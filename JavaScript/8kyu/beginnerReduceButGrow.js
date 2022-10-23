@@ -11,3 +11,4 @@ function grow(x){
 
 // top solution
 const grow=x=> x.reduce((a,b)=>a*b);
+
