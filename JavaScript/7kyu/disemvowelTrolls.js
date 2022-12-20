@@ -9,6 +9,10 @@
 // Note: for this kata y isn't considered a vowel.
 
 // my solution (DIDN'T PASS ALL TESTS)
+const isAlpha = function(ch){
+    return /^[A-Z]$/i.test(ch);
+  }
+
 function disemvowel(str) {
     const vowels = ['a','e','i','o','u'];
     const str1 = str.split('')
@@ -23,6 +27,7 @@ function disemvowel(str) {
     }
     }  
     return str1.join('');
+}
 
 
 //top solution 
@@ -31,4 +36,8 @@ function disemvowel(str) {
   }
   // this is solved using regex, or regular expressions
   // it's used to perform matches in strings 
-  // looks for a match of /[aeiou]/
+  // /[aeiou]/ - looks for a match of aeiou
+    // square brackets mean it'll match for on any of the characters in the list
+  // g - global search
+  // i - case insensitive
+
