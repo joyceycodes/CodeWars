@@ -20,3 +20,10 @@ def find_it(seq):
     for k,v in nums.items():
         if v % 2 ==1:
             return k
+
+
+# top solution
+def find_it(seq):
+    for i in seq:
+        if seq.count(i)%2!=0:
+            return i
