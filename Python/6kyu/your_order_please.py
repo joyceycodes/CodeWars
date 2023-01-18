@@ -23,3 +23,24 @@ def order(sentence):
         result.append(alphanum[i+1])
     
     return ' '.join(result)
+
+
+# top solution
+def order(sentence):
+    if not sentence:
+        return ""
+    result = []    #the list that will eventually become our sentence
+      
+    split_up = sentence.split() #the original sentence turned into a list
+  
+    for i in range(1,10):
+        for item in split_up:
+            if str(i) in item:
+                 result.append(item)    #adds them in numerical order since it cycles through i first
+  
+    return " ".join(result)
+
+# top solution
+def order(words):
+  return ' '.join(sorted(words.split(), key=lambda w:sorted(w)))
+
