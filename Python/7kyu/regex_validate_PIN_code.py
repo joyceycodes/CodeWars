@@ -18,6 +18,7 @@ def validate_pin(pin):
         return True
     return False
 
+
 # top solution
 def validate_pin(pin):
     return len(pin) in (4, 6) and pin.isdigit()
