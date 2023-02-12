@@ -1,2 +1,3 @@
 # CodeWars
-A repo for all my CodeWars challenges
+A repo of all my completed CodeWars katas!
+
