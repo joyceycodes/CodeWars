@@ -29,4 +29,9 @@ def count_smileys(arr):
 # top solution
 from re import findall
 def count_smileys(arr):
+    # First, " ".join(arr) concatenates all the strings in the arr list into a single string with spaces between each element.
+    # The concatenated string is then passed as the second argument to the findall function, which searches for all occurrences of the regular expression pattern r"[:;][-~]?[)D]".
+    # The regular expression pattern r"[:;][-~]?[)D]" matches any string that begins with either a : or ;, followed by an optional nose represented by a - or ~, and ending with either ) or D.
+    # findall returns a list of all matches found, and list() converts it into a list.
+    # Finally, len() is used to count the number of elements in the list of matches found, and this value is returned as the output of the function.
     return len(list(findall(r"[:;][-~]?[)D]", " ".join(arr))))
