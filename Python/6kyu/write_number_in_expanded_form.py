@@ -8,7 +8,7 @@
 def expanded_form(num):
     result = []
     length = len(str(num))-1
-    for i,e in enumerate(str(num)):
+    for i,e in str(num):
         if e != '0':
             num = e+ (length) * '0'
             result.append(num)
