@@ -23,3 +23,7 @@ def nb_dig(n, d):
     for i in squares:
         count += i.count(str(d))
     return count
+
+# top solution
+def nb_dig(n, d):
+    return sum(str(i*i).count(str(d)) for i in range(n+1))
