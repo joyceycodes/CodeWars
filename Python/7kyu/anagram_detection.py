@@ -6,7 +6,6 @@
 
 # Examples
 # "foefet" is an anagram of "toffee"
-
 # "Buckethead" is an anagram of "DeathCubeK"
 
 def is_anagram(test, original):
