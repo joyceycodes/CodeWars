@@ -26,7 +26,8 @@
 # P.S. The situation in this kata can be likened to the more-computer-science-related idea of a thread pool, with relation to running multiple processes at the same time: https://en.wikipedia.org/wiki/Thread_pool
 
 def queue_time(customers, n):
-    l=[0]*n
+    l=[0]*n #creates a list with n amount of 0's
     for i in customers:
-        l[l.index(min(l))]+=i
+        l[l.index(min(l))]+=i 
+        # finds the lowest value in the list and adds i to that index
     return max(l)
