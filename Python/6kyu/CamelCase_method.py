@@ -20,3 +20,4 @@ def camel_case(s):
 # top solution
 def camel_case(string):
     return string.title().replace(" ", "")
+    # title() method capitalizes every first letter of each word in a string
