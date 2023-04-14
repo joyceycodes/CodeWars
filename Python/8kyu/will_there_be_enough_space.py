@@ -20,5 +20,6 @@ def enough(cap, on, wait):
     excess = cap - on - wait
     return 0 if excess > 0 else abs(excess)
 
+# top solution
 def enough(cap, on, wait):
     return max(0, wait - (cap - on))
