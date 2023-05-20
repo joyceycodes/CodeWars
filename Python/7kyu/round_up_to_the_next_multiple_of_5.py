@@ -20,3 +20,7 @@ def round_to_next5(n):
     while (n%5 != 0):
         n += 1
     return n
+
+# top solution
+def round_to_next5(n):
+    return n + (5 - n) % 5
