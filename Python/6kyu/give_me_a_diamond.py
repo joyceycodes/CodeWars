@@ -57,10 +57,12 @@ def diamond(n):
 
     if n < 0 or n % 2 == 0:
         return None
-    
+    # result = the center line
     result = "*" * n + "\n"
     spaces = 1
     n = n - 2
+
+    # start from the center line, then work outwards
     while n > 0:
         current = " " * spaces + "*" * n + "\n"
         spaces = spaces + 1
