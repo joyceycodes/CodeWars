@@ -11,6 +11,7 @@
 # # "What was the name of your first pet?"
 # maskify("Skippy")                                   == "##ippy"
 # maskify("Nananananananananananananananana Batman!") == "####################################man!"
+
 def maskify(cc):
     return ''.join([str(cc[i]) if i > len(cc) - 5 else '#' for i in range(len(cc))])
 
