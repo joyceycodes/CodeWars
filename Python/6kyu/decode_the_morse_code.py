@@ -30,3 +30,18 @@ def decode_morse(morse_code):
         result += ' '
         
     return result.strip()
+
+# top solution 
+def decodeMorse(morseCode):
+
+    morseCode = morseCode.strip().replace("   ", " * ")
+
+    msg = ""
+    
+    for x in morseCode.split():
+        if x != "*":
+            msg += MORSE_CODE[x]
+        else:
+            msg += " "
+    
+    return msg
