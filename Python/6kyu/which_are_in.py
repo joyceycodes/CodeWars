@@ -13,8 +13,6 @@
 # returns []
 
 def in_array(array1, array2):
-    print(array1)
-    print(array2)
     r = set()
     for i in array1:
         for j in array2:
