@@ -29,3 +29,10 @@ def valid_braces(string):
             else:
                 return False
     return True if not open else False
+
+def validBraces(s):
+  while '{}' in s or '()' in s or '[]' in s:
+      s=s.replace('{}','')
+      s=s.replace('[]','')
+      s=s.replace('()','')
+  return s==''
