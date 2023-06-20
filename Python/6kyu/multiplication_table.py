@@ -17,3 +17,7 @@ def multiplication_table(size):
             row.append(i*j)
         table.append(row)
     return table
+
+# top solution
+def multiplicationTable(size):
+    return [[j*i for j in range(1, size+1)] for i in range(1, size+1)]
