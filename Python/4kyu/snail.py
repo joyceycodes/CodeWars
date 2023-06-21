@@ -1,5 +1,3 @@
-# DID NOT COMPLETE. COME BACK TO THIS ONE.
-
 # Snail Sort
 # Given an n x n array, return the array elements arranged from outermost elements to the middle element, traveling clockwise.
 
@@ -22,6 +20,27 @@
 
 # https://www.codewars.com/kata/521c2db8ddc89b9b7a0000c1/python
 
+def snail(snail_map):
+    # input - an array of arrays
+    # return - a singular array of all the digits from the matrix in clockwise fashion
+    next_dir = {"right":"down", "down":"left", "left":"up", "up":"right"}
+    dir = "right"
+    result = []
+    while snail_map:
+        if dir == "right":
+            result += snail_map.pop(0)
+        if dir == "down":
+            for i in snail_map:
+                result.append(i.pop())
+        if dir == "left":
+            result.extend(snail_map.pop(-1)[::-1])
+        if dir == "up":
+            for i in snail_map[::-1]:
+                result.append(i.pop(0))
+        dir = next_dir[dir]
+    return result
+
+# top solutions
 def snail(array):
     out = []
     while len(array):
