@@ -22,12 +22,10 @@ def strip_comments(strng, markers):
 
     result = []
     for i in strng:
-        comment = 0
         line = i
         for j in range(len(i)):
             if i[j] in markers:
-                comment = j
-                line = i[:comment]
+                line = i[:j]
                 break
         result.append(line.rstrip())
 
