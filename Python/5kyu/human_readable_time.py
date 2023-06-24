@@ -12,3 +12,7 @@ def make_readable(seconds):
     minutes = (seconds - ( hours*60*60 )) // 60
     seconds = seconds - ( hours*60*60 ) - (minutes*60)
     return ('{:02d}:{:02d}:{:02d}'.format(hours,minutes,seconds))
+
+# top solution
+def make_readable(s):
+    return '{:02}:{:02}:{:02}'.format(s / 3600, s / 60 % 60, s % 60)
