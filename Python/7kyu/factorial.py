@@ -5,9 +5,6 @@
 # More details about factorial can be found here.
 
 def factorial(n):
-    if n < 0 or n > 12:
-        raise ValueError
-    else:
-        if n < 2:
-            return 1
-        return n * factorial(n-1)
+    if n < 1:
+        return 1
+    return n * factorial(n-1)
