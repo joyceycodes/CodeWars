@@ -39,3 +39,14 @@ def encode(s, t=str.maketrans("aeiou", "12345")):
     
 def decode(s, t=str.maketrans("12345", "aeiou")):
     return s.translate(t)
+
+# using enumerate
+def encode(st):
+    for i, v in enumerate("aeiou", start=1):
+        st = st.replace(v,str(i))
+    return st
+    
+def decode(st):
+    for i, v in enumerate("aeiou", start=1):
+        st = st.replace(str(i),v)
+    return st
