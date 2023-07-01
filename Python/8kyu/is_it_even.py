@@ -1,12 +1,6 @@
-# In this Kata we are passing a number (n) into a function.
-
-# Your code will determine if the number passed is even (or not).
-
-# The function needs to return either a true or false.
-
-# Numbers may be positive or negative, integers or floats.
-
-# Floats with decimal part non equal to zero are considered UNeven for this kata.
-
-def is_even(n): 
-    return n%2 == 0
+def count_conflicts(drones, conflict_radius):
+    for i in range(len(drones)):
+        for j in range(i+1,len(drones)):
+            print(i,j)
+            
+count_conflicts([1,2,3,4,5],10)
