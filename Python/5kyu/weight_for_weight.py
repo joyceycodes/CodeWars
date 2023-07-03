@@ -36,7 +36,7 @@ def order_weight(strng):
 
     return " ".join([i[0] for i in weighted])
 
-# top solution
+# top solutions - I didn't need to actually store the new_weights in a new list. I could've just sorted by it
 def order_weight(_str):
     return ' '.join(sorted(sorted(_str.split(' ')), key=lambda x: sum(int(c) for c in x)))
 
