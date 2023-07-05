@@ -50,19 +50,23 @@ def find_nearest_neighbor(*, tree, point):
     k = len(point)
 
     best = None
+    second_best = None
 
     def search(*, tree, depth):
         """Recursively search through the k-d tree to find the
         nearest neighbor.
         """
-        nonlocal best
+        nonlocal best, second_best
 
         if tree is None:
             return
         
         distance = squared_distance(tree.value, point)
         if best is None or distance < best.distance:
+            second_best = best
             best = NNRecord(point=tree.value, distance=distance)
+        elif second_best is None or distance < second_best.distance:
+            second_best = best = NNRecord(point=tree.value, distance=distance)
         
         axis = depth % k
         diff = point[axis] - tree.value[axis]
@@ -76,19 +80,21 @@ def find_nearest_neighbor(*, tree, point):
             search(tree=away, depth=depth+1)
     
     search(tree=tree, depth=0)
-    print(best.point)
-    return best.point
+    # print(best.point)
+    return second_best.point
     
-# def count_conflicts(drones, conflict_radius):
-#     conflicted_drones = set()
-#     for point in drones:
-#         nearest_neighbor = find_nearest_neighbor(tree=tree, point=point)
-#         print(nearest_neighbor)
-#         print(point)
-#         if squared_distance(point, nearest_neighbor) < conflict_radius:
-#             conflicted_drones.add(point)
-#             conflicted_drones.add(nearest_neighbor)
-#     return len(conflicted_drones)
+def count_conflicts(drones, conflict_radius):
+    conflicted_drones = set()
+    for point in drones:
+        nearest_neighbor = find_nearest_neighbor(tree=tree, point=point)
+        # print(nearest_neighbor)
+        # print(point)
+        distance = squared_distance(point, nearest_neighbor)
+        # print(distance)
+        if distance < conflict_radius ** 2:
+            conflicted_drones.add(tuple(point))
+            conflicted_drones.add(tuple(nearest_neighbor))
+    return len(conflicted_drones)
 
     # j = len(drones) - 1
     # i = j - 1
@@ -142,10 +148,10 @@ def gen_coord():
 positions = [[gen_coord(), gen_coord()] for i in range(NUM_DRONES)]
 # pp.pprint(build_kdtree(positions))
 tree = build_kdtree(positions)
-# conflicts = count_conflicts(positions, CONFLICT_RADIUS)
-# print("Drones in conflict: {}".format(conflicts))
+conflicts = count_conflicts(positions, CONFLICT_RADIUS)
+print("Drones in conflict: {}".format(conflicts))
 
-print(find_nearest_neighbor(tree=tree, point=[9,2]))
+# print(find_nearest_neighbor(tree=tree, point=[0,0]))
 # print(len(NNRecord))
 
     
