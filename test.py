@@ -1,5 +1,4 @@
 import random
-import pprint
 import collections
 
 random.seed(1)  # Setting random number generator seed for repeatability
@@ -9,15 +8,12 @@ NUM_DRONES = 10
 AIRSPACE_SIZE = 100  # Meters. # changed from 128000
 CONFLICT_RADIUS = 20  # Meters. #changed from 500
 
-pp = pprint.PrettyPrinter(indent=4)
-
-
 def squared_distance(point1, point2):
     dx = point1[0] - point2[0]
     dy = point1[1] - point2[1]
     return (dx**2 ) + (dy**2)
 
-BT = collections.namedtuple("BT", ["value", "left", "right"])
+BT = collections.namedtuple("BT", ["value", "left", "right", "in_conflict"])
 """
 A Binary Tree (BT) with a node value, and left- and
 right-subtrees.
@@ -34,7 +30,8 @@ def build_kdtree(points, depth = 0):
     return BT (
         value = sorted_points[n//2], # root of the tree/subtree
         left = build_kdtree(sorted_points[:n//2], depth + 1),
-        right = build_kdtree(sorted_points[n//2 + 1:], depth + 1)
+        right = build_kdtree(sorted_points[n//2 + 1:], depth + 1),
+        in_conflict= False
     )
 
 NNRecord = collections.namedtuple("NNRecord", ["point", "distance"])
@@ -51,20 +48,24 @@ def find_nearest_neighbor(*, tree, point):
 
     best = None
     second_best = None
-
+    conflict_radius = 20
     def search(*, tree, depth):
         """Recursively search through the k-d tree to find the
         nearest neighbor.
         """
-        nonlocal best, second_best
+        nonlocal best, second_best, conflict_radius
 
         if tree is None:
             return
         
+        if tree.in_conflict == True:
+            return
+        
         distance = squared_distance(tree.value, point)
-        if best is None or distance < best.distance:
+        if (best is None or distance < best.distance) and distance < conflict_radius:
             second_best = best
             best = NNRecord(point=tree.value, distance=distance)
+            tree.in_conflict = True
         elif second_best is None or distance < second_best.distance:
             second_best = best = NNRecord(point=tree.value, distance=distance)
         
@@ -80,11 +81,11 @@ def find_nearest_neighbor(*, tree, point):
             search(tree=away, depth=depth+1)
     
     search(tree=tree, depth=0)
-    # print(best.point)
     return second_best.point
     
 def count_conflicts(drones, conflict_radius):
     conflicted_drones = set()
+    tree = build_kdtree(positions)
     for point in drones:
         nearest_neighbor = find_nearest_neighbor(tree=tree, point=point)
         # print(nearest_neighbor)
@@ -147,7 +148,6 @@ def gen_coord():
 
 positions = [[gen_coord(), gen_coord()] for i in range(NUM_DRONES)]
 # pp.pprint(build_kdtree(positions))
-tree = build_kdtree(positions)
 conflicts = count_conflicts(positions, CONFLICT_RADIUS)
 print("Drones in conflict: {}".format(conflicts))
 
