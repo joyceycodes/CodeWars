@@ -15,8 +15,6 @@ def nth_fib(n):
     while count <= n:
         arr.append(arr[-1]+arr[-2])
         count += 1
-        print(arr)
-        print(count)
     return arr[count-2]
 
 # top solution
