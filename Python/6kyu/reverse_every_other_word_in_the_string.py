@@ -4,3 +4,7 @@ def reverse_alternate(s):
     words = s.split()
     result = [words[i] if i%2==0 else words[i][::-1] for i in range(len(words))]
     return " ".join(result)
+
+# top solution
+def reverse_alternate(string):
+    return " ".join(y[::-1] if x%2 else y for x,y in enumerate(string.split()))
