@@ -3,7 +3,6 @@
 # The inputs x and y are always greater or equal to 1, so the greatest common divisor will always be an integer that is also greater or equal to 1.
 
 def mygcd(x,y):
-    #GOOD LUCK
     while y:
         x,y=y,x%y
     return x

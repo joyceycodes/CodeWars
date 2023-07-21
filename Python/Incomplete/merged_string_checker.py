@@ -12,6 +12,8 @@
 # part1:  c   d   w         = cdw
 # part2:    o   e   a r s   = oears
 
+# https://www.codewars.com/kata/54c9fcad28ec4c6e680011aa/solutions
+
 def is_merge(s, part1, part2):
     if not part1:
       return s == part2
