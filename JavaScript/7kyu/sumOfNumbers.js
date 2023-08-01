@@ -25,9 +25,7 @@ function getSum(a, b)
   } 
   
   let sum = 0
-  for(let i = mini; i <= maxi; i++){
-    sum += i
-  }
+  for(let i = mini; i <= maxi; i++){ sum += i }
   return sum
 }
 
