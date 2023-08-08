@@ -12,7 +12,7 @@
 // 2 --> 3 + 5 = 8
 
 function rowSumOddNumbers(n) {
-	let odds = []
+    let odds = []
   curr_num = 1
   for(let i = 0; i < n+1; i++){
     let row = []
