@@ -1,3 +1,3 @@
 # CodeWars
-A repo of all my completed CodeWars katas!
+Daily coding challenges to sharpen my problem solving skills
 
