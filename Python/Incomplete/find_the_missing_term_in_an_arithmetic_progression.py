@@ -1,17 +1,28 @@
 # https://www.codewars.com/kata/52de553ebb55d1fca3000371/
 
 def find_missing(nums):
-        nums.sort()
-        longest_seq = 1
-        curr_seq = 1
-        for i in range(1,len(nums)):
-            # start of seq
-            if nums[i] - nums[i-1] == 1:
-                curr_seq += 1
-                while curr_seq+i < len(nums) and nums[i] + curr_seq == nums[i+curr_seq]:
-                    curr_seq += 1
-                longest_seq = max(longest_seq, curr_seq) 
-            curr_seq = 1
-        return longest_seq 
+        sorted_nums = sorted(nums)
+        res = []
+
+        for i,e in enumerate(sorted_nums):
+            if i > 0 and e == sorted_nums[i-1]:
+                continue
+
+            B = A + 1
+            C = len(sorted_nums)-1
+
+            while B < C:
+                three_sum = sorted_nums[B] + sorted_nums[C] + e
+                if three_sum > 0:
+                    C -= 1
+                elif three_sum < 0:
+                    B += 1
+                else:
+                    res.append([sorted_nums[B], sorted_nums[C], e])
+                    B += 1
+                    while sorted_nums[B] == sorted_nums[B-1] and B < C:
+                        B += 1
+
+        return res
     
-print(find_missing([100,4,200,1,3,2]))
+print(find_missing([-1,0,1,2,-1,-4]))
