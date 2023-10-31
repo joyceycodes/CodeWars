@@ -34,3 +34,5 @@ function duplicateEncode(word){
       })
       .join('');
   }
+
+  // reviewed 10/30/23
