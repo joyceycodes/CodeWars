@@ -9,7 +9,6 @@
 function evenNumbers(array, number) {
     // we are getting in two inputs, a list that will contain only numbers, and an int
     // return the last even numbers in the correct order
-    
     // filter out only the even numbers and array slice to get the last of the list
     
     return array.filter(e => e % 2 == 0).slice(-number)
