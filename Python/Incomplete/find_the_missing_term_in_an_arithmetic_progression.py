@@ -1,28 +1,29 @@
-# https://www.codewars.com/kata/52de553ebb55d1fca3000371/
 
-def find_missing(nums):
-        sorted_nums = sorted(nums)
-        res = []
+def generateParenthesis(n):
+    # the result will need n open and n closing parentheses
+    # only add open parenthsis is open < n
+    # only add a closing parenthesis if closed < open
+    # valid IF open -- closed == n
 
-        for i,e in enumerate(sorted_nums):
-            if i > 0 and e == sorted_nums[i-1]:
-                continue
+    stack = []
+    res = []
 
-            B = A + 1
-            C = len(sorted_nums)-1
+    def backtrack(openN, closedN):
+        if openN == closedN == n:
+            res.append("".join(stack))
+            return
 
-            while B < C:
-                three_sum = sorted_nums[B] + sorted_nums[C] + e
-                if three_sum > 0:
-                    C -= 1
-                elif three_sum < 0:
-                    B += 1
-                else:
-                    res.append([sorted_nums[B], sorted_nums[C], e])
-                    B += 1
-                    while sorted_nums[B] == sorted_nums[B-1] and B < C:
-                        B += 1
-
-        return res
+        if openN < n:
+            stack.append("(")
+            backtrack(openN + 1, closedN)
+            stack.pop()
+        
+        if closedN < openN:
+            stack.append(")")
+            backtrack(openN, closedN + 1)
+            stack.pop()
     
-print(find_missing([-1,0,1,2,-1,-4]))
+    backtrack(0,0)
+    return res
+
+print(generateParenthesis(3))
