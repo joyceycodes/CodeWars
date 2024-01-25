@@ -38,3 +38,5 @@ def is_prime(num):
 print(is_prime(747760303)) #false
 
 print(is_prime(1759185811)) #false
+
+# reviewed 1/24/24
